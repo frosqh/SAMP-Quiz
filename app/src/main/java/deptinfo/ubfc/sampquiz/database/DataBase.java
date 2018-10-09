@@ -1,4 +1,4 @@
-package deptinfo.ubfc.sampquiz;
+package deptinfo.ubfc.sampquiz.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,6 +18,7 @@ public class DataBase{
         public static final String COLUMN_NAME_SECOND_NAME = "second_name";
         public static final String COLUMN_NAME_THIRD_SCORE = "third_score";
         public static final String COLUMN_NAME_THIRD_NAME = "third_name";
+        public static final String COLUMN_NAME_IMAGE = "image_url";
     }
 
     public static class Question implements BaseColumns {
