@@ -35,7 +35,7 @@ public class QuizActivity extends AppCompatActivity {
             Question tempQ = new Question(questions.getString(1));
             tempQ.setAnswer(questions.getInt(2));
             String queryA = "SELECT * FROM "+DataBase.Answer.TABLE_NAME+" WHERE "+DataBase.Answer.COLUMN_NAME_QUESTION+" = "+questions.getString(0)+";";
-            Cursor answers = db.rawQuery(queryA ,null);
+            Cursor answers = db.rawQuery(queryA , new String[]{"f"});
             answers.moveToFirst();
             while (!answers.isAfterLast()){
                 tempQ.add(answers.getString(1));

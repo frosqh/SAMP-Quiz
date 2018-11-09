@@ -31,15 +31,21 @@ public class QuestionActivity extends AppCompatActivity{
         index = extras.getInt("index");
         size = extras.getInt("size");
         score = extras.getFloat("score");
-        questionsList = new ArrayList<>();
-        for (int i = index+1; i<size;i++){
-            questionsList.add((Question) extras.getSerializable("question"+i));
+        if (index == size){
+            Intent intent = new Intent(this,ResultActivity.class);
+            intent.putExtra("score",score+1);
+            startActivity(intent);
+            System.exit(5);
         }
+        questionsList = new ArrayList<>();
+        for (int i = 0; i<size;i++)
+            questionsList.add((Question) extras.getSerializable("question"+i));
         Log.e("INDEX", String.valueOf(index));
-        Question currentQuestion = (Question) extras.getSerializable("question"+index);
+        Log.e("INDEX","list length : "+questionsList.size());
+        Question currentQuestion = questionsList.get(index);
 
         ((TextView) findViewById(R.id.question_text)).setText(currentQuestion.getQuestion());
-        ((TextView) findViewById(R.id.question_score_text)).setText("Question : "+index+"/"+size+" - Score : "+score);
+        ((TextView) findViewById(R.id.question_score_text)).setText("Question : "+(index+1)+"/"+size+" - Score : "+score);
 
         final List<Button> buttons = new ArrayList<>();
 
@@ -71,12 +77,13 @@ public class QuestionActivity extends AppCompatActivity{
                 buttons.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Log.e("ARF","Error ! ");
                         Intent intent = new Intent(v.getContext(),QuestionActivity.class);
                         intent.putExtra("index",index+1);
                         intent.putExtra("size",size);
                         intent.putExtra("score",max(0,(score-0.5)));
                         for (int i = 0;i<questionsList.size();i++){
-                            intent.putExtra("question"+index+i,questionsList.get(i));
+                            intent.putExtra("question"+i,questionsList.get(i));
                         }
                         v.getContext().startActivity(intent);
                     }
