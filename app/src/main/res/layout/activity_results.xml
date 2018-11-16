@@ -45,13 +45,13 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/up1"
                     android:layout_width="79dp"
                     android:layout_height="66dp"
                     app:srcCompat="@drawable/up_arrow" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/letter1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="A"
@@ -59,7 +59,7 @@
                     android:textSize="50sp" />
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/down1"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
                     android:rotation="180"
@@ -77,13 +77,13 @@
                 app:layout_constraintStart_toEndOf="@+id/linearLayout4">
 
                 <ImageView
-                    android:id="@+id/imageView8"
+                    android:id="@+id/up2"
                     android:layout_width="79dp"
                     android:layout_height="66dp"
                     app:srcCompat="@drawable/up_arrow" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/letter2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="A"
@@ -91,7 +91,7 @@
                     android:textSize="50sp" />
 
                 <ImageView
-                    android:id="@+id/imageView11"
+                    android:id="@+id/down2"
                     android:layout_width="79dp"
                     android:layout_height="66dp"
                     android:rotation="180"
@@ -107,13 +107,13 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView9"
+                    android:id="@+id/up3"
                     android:layout_width="79dp"
                     android:layout_height="66dp"
                     app:srcCompat="@drawable/up_arrow" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/letter3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="A"
@@ -121,7 +121,7 @@
                     android:textSize="50sp" />
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/down3"
                     android:layout_width="match_parent"
                     android:layout_height="66dp"
                     android:rotation="180"

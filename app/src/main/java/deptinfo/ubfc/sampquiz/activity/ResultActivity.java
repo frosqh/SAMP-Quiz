@@ -3,6 +3,8 @@ package deptinfo.ubfc.sampquiz.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +15,8 @@ public class ResultActivity extends AppCompatActivity {
     private double score;
     private int size;
     private double first, second, third;
+
+    private static final String alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 
     @Override
@@ -29,11 +33,31 @@ public class ResultActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.quizz_name)).setText(name);
         TextView scoreView = findViewById(R.id.score);
         scoreView.setText(((String) scoreView.getText()).replace("%s",String.valueOf(score)).replace("%t",String.valueOf(Double.valueOf(size))));
-        if (score < third)
-            ((TextView) findViewById(R.id.rank)).setText("Unfortunately, you weren't able to make it to the top 3. For you information, third best's score is "+third);
-        else{
-
+        if (score <= third) {
+            ((TextView) findViewById(R.id.rank)).setText("Unfortunately, you weren't able to make it to the top 3. For you information, third best's score is " + third);
+            findViewById(R.id.choose_score).setVisibility(View.INVISIBLE);
         }
+        else{
+            findViewById(R.id.choose_score).setVisibility(View.VISIBLE);
+            if (score <= second)
+                ((TextView) findViewById(R.id.rank)).setText("Congratulations, you're now in the top 3. Please enter your name using the up/down arrows");
+            else
+                if (score <= first)
+                    ((TextView) findViewById(R.id.rank)).setText("Amazing, you're now in the top 2. Please enter your name using the up/down arrows");
+                else
+                    ((TextView) findViewById(R.id.rank)).setText("Astonishing, you're the best player for this quiz ! Please enter your name using up/down arrows");
+        }
+        final TextView letter1 = findViewById(R.id.letter1);
+        final TextView letter2 = findViewById(R.id.letter2);
+        final TextView letter3 = findViewById(R.id.letter3);
+
+
+        findViewById(R.id.up1).setOnClickListener((e) -> letter1.setText(alph.charAt((alph.indexOf(letter1.getText().charAt(0))+1)%26)));
+        findViewById(R.id.down1).setOnClickListener((e) -> letter1.setText(alph.charAt((alph.indexOf(letter1.getText().charAt(0))-1)%26)));
+        findViewById(R.id.up2).setOnClickListener((e) -> letter2.setText(alph.charAt((alph.indexOf(letter2.getText().charAt(0))+1)%26)));
+        findViewById(R.id.down2).setOnClickListener((e) -> letter2.setText(alph.charAt((alph.indexOf(letter2.getText().charAt(0))-1)%26)));
+        findViewById(R.id.up3).setOnClickListener((e) -> letter3.setText(alph.charAt((alph.indexOf(letter3.getText().charAt(0))+1)%26)));
+        findViewById(R.id.down3).setOnClickListener((e) -> letter3.setText(alph.charAt((alph.indexOf(letter3.getText().charAt(0))-1)%26)));
 
     }
 
