@@ -2,6 +2,8 @@ package deptinfo.ubfc.sampquiz.recycler;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
@@ -16,6 +18,7 @@ import java.io.File;
 
 import deptinfo.ubfc.sampquiz.R;
 import deptinfo.ubfc.sampquiz.activity.QuizActivity;
+import deptinfo.ubfc.sampquiz.database.*;
 
 public class QuizPlayHolder extends RecyclerView.ViewHolder{
     private TextView textView;
@@ -38,6 +41,39 @@ public class QuizPlayHolder extends RecyclerView.ViewHolder{
                 v.getContext().startActivity(intent);
             }
 
+        });
+
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                int quizId = Integer.parseInt(idTextView.getText().toString());
+                DataBaseHelper dataBaseHelper = new DataBaseHelper(idTextView.getContext());
+                SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+                String query = "SELECT "
+                        + DataBase.Quiz.COLUMN_NAME_FIRST_NAME+", "
+                        + DataBase.Quiz.COLUMN_NAME_FIRST_SCORE+", "
+                        + DataBase.Quiz.COLUMN_NAME_SECOND_NAME+", "
+                        + DataBase.Quiz.COLUMN_NAME_SECOND_SCORE+", "
+                        + DataBase.Quiz.COLUMN_NAME_THIRD_NAME+", "
+                        + DataBase.Quiz.COLUMN_NAME_THIRD_SCORE
+                        + " FROM "+DataBase.Quiz.TABLE_NAME
+                        + " WHERE "+ DataBase.Quiz._ID+" = "+quizId;
+                Cursor quiz = db.rawQuery(query,null,null);
+                quiz.moveToFirst();
+                String firstName = quiz.getString(0);
+                Double firstScore = quiz.getDouble(1);
+                String secondName = quiz.getString(2);
+                Double secondScore = quiz.getDouble(3);
+                String thirdName = quiz.getString(4);
+                Double thirdScore = quiz.getDouble(5);
+
+                Toast.makeText(idTextView.getContext(), "1st : "+firstName+" - "+firstScore+"\n"+
+                                                                "2nd : "+secondName+" - "+secondScore+"\n"+
+                                                                "3rd : "+thirdName+" - "+thirdScore,Toast.LENGTH_LONG).show();
+
+
+                return true;
+            }
         });
     }
 

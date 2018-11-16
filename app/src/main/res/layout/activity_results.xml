@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/quizz_name"
@@ -34,7 +36,8 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/choose_score"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
 
             <LinearLayout
                 android:id="@+id/linearLayout4"
@@ -131,9 +134,10 @@
         </android.support.constraint.ConstraintLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/confirm_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="110dp"
             android:text="Confirm" />
 
     </LinearLayout>
