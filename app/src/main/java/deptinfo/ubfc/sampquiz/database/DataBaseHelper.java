@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 11;
     public static final String DATABASE_NAME = "DataBaseSAMP.db";
 
     private static final String SQL_CREATE_ENTRY_QUIZ =
@@ -59,11 +59,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(DataBase.Quiz.COLUMN_NAME_TITLE,"Vie Animale");
         values.put(DataBase.Quiz.COLUMN_NAME_FIRST_NAME,"WIN");
-        values.put(DataBase.Quiz.COLUMN_NAME_FIRST_SCORE,90);
+        values.put(DataBase.Quiz.COLUMN_NAME_FIRST_SCORE,5);
         values.put(DataBase.Quiz.COLUMN_NAME_SECOND_NAME,"MED");
-        values.put(DataBase.Quiz.COLUMN_NAME_SECOND_SCORE,45);
+        values.put(DataBase.Quiz.COLUMN_NAME_SECOND_SCORE,4);
         values.put(DataBase.Quiz.COLUMN_NAME_THIRD_NAME,"LOS");
-        values.put(DataBase.Quiz.COLUMN_NAME_THIRD_SCORE,0);
+        values.put(DataBase.Quiz.COLUMN_NAME_THIRD_SCORE,3);
         values.put(DataBase.Quiz.COLUMN_NAME_IMAGE,"res::panda");
         long quizId = db.insert(DataBase.Quiz.TABLE_NAME, null, values);
 
@@ -74,20 +74,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         addTrueFalseAnswers(db, addQuestion(db, "Le papillon monarque vole plus de 4000km",1,quizId));
         addTrueFalseAnswers(db, addQuestion(db, "Les gorilles mâles dorment dans les arbres",0,quizId));
 
-        values = new ContentValues();
-        values.put(DataBase.Quiz.COLUMN_NAME_TITLE,"Yolo, fuck it All *");
-        values.put(DataBase.Quiz.COLUMN_NAME_IMAGE,"res::inter");
-        values.put(DataBase.Quiz.COLUMN_NAME_FIRST_NAME,"WIN");
-        values.put(DataBase.Quiz.COLUMN_NAME_FIRST_SCORE,90);
-        values.put(DataBase.Quiz.COLUMN_NAME_SECOND_NAME,"MED");
-        values.put(DataBase.Quiz.COLUMN_NAME_SECOND_SCORE,45);
-        values.put(DataBase.Quiz.COLUMN_NAME_THIRD_NAME,"LOS");
-        values.put(DataBase.Quiz.COLUMN_NAME_THIRD_SCORE,0);
-        db.insert(DataBase.Quiz.TABLE_NAME, null, values);
-
     }
 
-    private long addQuestion(SQLiteDatabase db, String text, int answer, long quizId){
+    public long addQuestion(SQLiteDatabase db, String text, int answer, long quizId){
         ContentValues values = new ContentValues();
         values.put(DataBase.Question.COLUMN_NAME_TEXT,text);
         values.put(DataBase.Question.COLUMN_NAME_ANSWER,answer);

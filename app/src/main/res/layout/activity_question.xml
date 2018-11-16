@@ -39,7 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <Button
                 android:id="@+id/answer_1"
@@ -72,6 +73,14 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/answer_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Button"
+                android:visibility="invisible" />
+
+            <Button
                 android:id="@+id/answer_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,14 +89,6 @@
                 android:visibility="invisible"
                 tools:layout_editor_absoluteX="280dp" />
 
-            <Button
-                android:id="@+id/answer_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"
-                android:visibility="invisible" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -95,6 +96,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/answer_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Button"
+                android:visibility="invisible"
+                tools:layout_editor_absoluteX="16dp" />
 
             <Button
                 android:id="@+id/answer_6"
@@ -106,15 +116,6 @@
                 tools:layout_editor_absoluteX="280dp"
                 tools:layout_editor_absoluteY="84dp" />
 
-            <Button
-                android:id="@+id/answer_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button"
-                android:visibility="invisible"
-                tools:layout_editor_absoluteX="16dp" />
-
         </LinearLayout>
 
         <Button
@@ -123,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_weight="1"
+            android:onClick="showResponse"
             android:text="@string/cheat"
             tools:layout_editor_absoluteX="123dp"
             tools:layout_editor_absoluteY="413dp" />
@@ -133,6 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
+            android:onClick="goToNext"
             android:text="@string/next"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="148dp"

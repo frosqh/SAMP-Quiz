@@ -3,4 +3,9 @@
     <string name="quizimage">quizImage</string>
     <string name="cheat">Show Response</string>
     <string name="next">Next</string>
+    <string name="play">Play</string>
+    <string name="edit_quizzes">Edit Quizzes</string>
+    <string name="download_quizzes">Download quizzes</string>
+    <string name="quit">Quit</string>
+    <string name="score_com">Your score : %s / %t</string>
 </resources>

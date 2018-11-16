@@ -1,5 +1,7 @@
 package deptinfo.ubfc.sampquiz.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +23,8 @@ import static java.lang.Math.max;
 public class QuestionActivity extends AppCompatActivity{
     int index;
     int size;
-    float score;
+    double score;
+    String name;
     List<Question> questionsList;
 
     @Override
@@ -30,10 +34,13 @@ public class QuestionActivity extends AppCompatActivity{
         Bundle extras = getIntent().getExtras();
         index = extras.getInt("index");
         size = extras.getInt("size");
-        score = extras.getFloat("score");
-        if (index == size){
+        score = extras.getDouble("score");
+        name = extras.getString("name");
+        if (index == size){ //Go to results
             Intent intent = new Intent(this,ResultActivity.class);
-            intent.putExtra("score",score+1);
+            intent.putExtra("score",score);
+            intent.putExtra("name",name);
+            intent.putExtra("size",size);
             startActivity(intent);
             System.exit(5);
         }
@@ -63,32 +70,50 @@ public class QuestionActivity extends AppCompatActivity{
                 buttons.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(v.getContext(),QuestionActivity.class);
-                        intent.putExtra("index",index+1);
-                        intent.putExtra("size",size);
-                        intent.putExtra("score",score+1);
-                        for (int i = 0;i<questionsList.size();i++){
-                            intent.putExtra("question"+i,questionsList.get(i));
-                        }
-                        v.getContext().startActivity(intent);
+                        nextQuestion(index+1,score+1);
                     }
                 });
             } else {
                 buttons.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.e("ARF","Error ! ");
-                        Intent intent = new Intent(v.getContext(),QuestionActivity.class);
-                        intent.putExtra("index",index+1);
-                        intent.putExtra("size",size);
-                        intent.putExtra("score",max(0,(score-0.5)));
-                        for (int i = 0;i<questionsList.size();i++){
-                            intent.putExtra("question"+i,questionsList.get(i));
-                        }
-                        v.getContext().startActivity(intent);
+                        nextQuestion(index+1, max(0,(score-0.5)));
                     }
                 });
             }
         }
     }
+
+    public void goToNext(View v){
+        nextQuestion(index+1,score);
+    }
+
+    private void nextQuestion(int ind, double score){
+        Intent intent = new Intent(this,QuestionActivity.class);
+        intent.putExtra("index",ind);
+        intent.putExtra("size",size);
+        intent.putExtra("score",score);
+        intent.putExtra("name",name);
+        for (int i = 0;i<questionsList.size();i++){
+            intent.putExtra("question"+i,questionsList.get(i));
+        }
+        startActivity(intent);
+    }
+
+    public void showResponse(View v){
+        new AlertDialog.Builder(this)
+                .setTitle("Show Response")
+                .setMessage("Do you really want to cheat ? Your score will suffer a -0.25.")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        score = max(0, score-0.25);
+                        ((TextView) findViewById(R.id.question_score_text)).setText("Question : "+(index+1)+"/"+size+" - Score : "+score);
+                        Toast.makeText(QuestionActivity.this, questionsList.get(index).getAnswers().get(questionsList.get(index).getAnswer()), Toast.LENGTH_SHORT).show();
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+
 }

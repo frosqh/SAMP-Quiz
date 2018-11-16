@@ -35,7 +35,7 @@ public class QuizActivity extends AppCompatActivity {
             Question tempQ = new Question(questions.getString(1));
             tempQ.setAnswer(questions.getInt(2));
             String queryA = "SELECT * FROM "+DataBase.Answer.TABLE_NAME+" WHERE "+DataBase.Answer.COLUMN_NAME_QUESTION+" = "+questions.getString(0)+";";
-            Cursor answers = db.rawQuery(queryA , new String[]{"f"});
+            Cursor answers = db.rawQuery(queryA ,null);
             answers.moveToFirst();
             while (!answers.isAfterLast()){
                 tempQ.add(answers.getString(1));
@@ -47,6 +47,12 @@ public class QuizActivity extends AppCompatActivity {
         }
         questions.close();
 
+        query = "SELECT "+DataBase.Quiz.COLUMN_NAME_TITLE+" FROM "+DataBase.Quiz.TABLE_NAME+" WHERE "+DataBase.Quiz._ID+" = "+quizId+";";
+        Cursor quizs = db.rawQuery(query, null);
+        quizs.moveToFirst();
+        String quizName = quizs.getString(0);
+        db.close();
+
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("index",0);
         intent.putExtra("size",questionsList.size());
@@ -55,6 +61,7 @@ public class QuizActivity extends AppCompatActivity {
             Log.e("QUE",questionsList.get(i).toString());
             intent.putExtra("question"+i,questionsList.get(i));
         }
+        intent.putExtra("name",quizName);
         startActivity(intent);
     }
 }

@@ -31,7 +31,7 @@ public class ChooseQuizPlayActivity extends AppCompatActivity {
         Cursor quiz = db.rawQuery("SELECT * FROM "+ DataBase.Quiz.TABLE_NAME+";",null); //Init quizzs
         quiz.moveToFirst();
         while (!quiz.isAfterLast()){
-            quizList.add(new QuizCard(quiz.getString(1),quiz.getString(2),quiz.getString(4),quiz.getString(3)+"%",quiz.getString(0)));
+            quizList.add(new QuizCard(quiz.getString(1),quiz.getString(2),quiz.getString(4),quiz.getString(3),quiz.getString(0)));
             quiz.moveToNext();
         }
 
