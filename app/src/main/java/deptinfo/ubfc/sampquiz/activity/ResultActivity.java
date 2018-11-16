@@ -52,13 +52,47 @@ public class ResultActivity extends AppCompatActivity {
         final TextView letter3 = findViewById(R.id.letter3);
 
 
-        findViewById(R.id.up1).setOnClickListener((e) -> letter1.setText(alph.charAt((alph.indexOf(letter1.getText().charAt(0))+1)%26)));
-        findViewById(R.id.down1).setOnClickListener((e) -> letter1.setText(alph.charAt((alph.indexOf(letter1.getText().charAt(0))-1)%26)));
-        findViewById(R.id.up2).setOnClickListener((e) -> letter2.setText(alph.charAt((alph.indexOf(letter2.getText().charAt(0))+1)%26)));
-        findViewById(R.id.down2).setOnClickListener((e) -> letter2.setText(alph.charAt((alph.indexOf(letter2.getText().charAt(0))-1)%26)));
-        findViewById(R.id.up3).setOnClickListener((e) -> letter3.setText(alph.charAt((alph.indexOf(letter3.getText().charAt(0))+1)%26)));
-        findViewById(R.id.down3).setOnClickListener((e) -> letter3.setText(alph.charAt((alph.indexOf(letter3.getText().charAt(0))-1)%26)));
+        findViewById(R.id.up1).setOnClickListener(new View.OnClickListener() {
+                                                      @Override
+                                                      public void onClick(View v) {
+                                                          setNewText(letter1);
+                                                      }
+                                                  });
+        findViewById(R.id.down1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNewText(letter1);
+            }
+        });
+        findViewById(R.id.up2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNewText(letter2);
+            }
+        });
+        findViewById(R.id.down2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNewText(letter2);
+            }
+        });
+        findViewById(R.id.up3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNewText(letter3);
+            }
+        });
+        findViewById(R.id.down3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setNewText(letter3);
+            }
+        });
 
+    }
+
+    private void setNewText(TextView letter){
+        letter.setText(alph.charAt((alph.indexOf(letter.getText().charAt(0))+1)%26));
     }
 
     @Override
