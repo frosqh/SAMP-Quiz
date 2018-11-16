@@ -47,16 +47,22 @@ public class QuizActivity extends AppCompatActivity {
         }
         questions.close();
 
-        query = "SELECT "+DataBase.Quiz.COLUMN_NAME_TITLE+" FROM "+DataBase.Quiz.TABLE_NAME+" WHERE "+DataBase.Quiz._ID+" = "+quizId+";";
+        query = "SELECT "+DataBase.Quiz.COLUMN_NAME_TITLE+","+DataBase.Quiz.COLUMN_NAME_FIRST_SCORE+","+DataBase.Quiz.COLUMN_NAME_SECOND_SCORE+","+DataBase.Quiz.COLUMN_NAME_THIRD_SCORE+" FROM "+DataBase.Quiz.TABLE_NAME+" WHERE "+DataBase.Quiz._ID+" = "+quizId+";";
         Cursor quizs = db.rawQuery(query, null);
         quizs.moveToFirst();
         String quizName = quizs.getString(0);
+        double first = quizs.getDouble(1);
+        double second = quizs.getDouble(2);
+        double third = quizs.getDouble(3);
         db.close();
 
         Intent intent = new Intent(this, QuestionActivity.class);
         intent.putExtra("index",0);
         intent.putExtra("size",questionsList.size());
         intent.putExtra("score",0);
+        intent.putExtra("first",first);
+        intent.putExtra("second",second);
+        intent.putExtra("third",third);
         for (int i = 0;i<questionsList.size();i++){
             Log.e("QUE",questionsList.get(i).toString());
             intent.putExtra("question"+i,questionsList.get(i));

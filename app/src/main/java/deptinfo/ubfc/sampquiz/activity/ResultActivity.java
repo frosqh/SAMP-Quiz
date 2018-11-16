@@ -9,9 +9,10 @@ import android.widget.Toast;
 import deptinfo.ubfc.sampquiz.R;
 
 public class ResultActivity extends AppCompatActivity {
-    String name;
-    double score;
-    int size;
+    private String name;
+    private double score;
+    private int size;
+    private double first, second, third;
 
 
     @Override
@@ -22,10 +23,18 @@ public class ResultActivity extends AppCompatActivity {
         name = extras.getString("name");
         score = extras.getDouble("score");
         size = extras.getInt("size");
+        first = extras.getDouble("first");
+        second = extras.getDouble("second");
+        third = extras.getDouble("third");
         ((TextView) findViewById(R.id.quizz_name)).setText(name);
         TextView scoreView = findViewById(R.id.score);
         scoreView.setText(((String) scoreView.getText()).replace("%s",String.valueOf(score)).replace("%t",String.valueOf(Double.valueOf(size))));
-        
+        if (score < third)
+            ((TextView) findViewById(R.id.rank)).setText("Unfortunately, you weren't able to make it to the top 3. For you information, third best's score is "+third);
+        else{
+
+        }
+
     }
 
     @Override

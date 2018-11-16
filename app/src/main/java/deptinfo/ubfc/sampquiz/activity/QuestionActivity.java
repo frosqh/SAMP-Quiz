@@ -21,11 +21,14 @@ import deptinfo.ubfc.sampquiz.R;
 import static java.lang.Math.max;
 
 public class QuestionActivity extends AppCompatActivity{
-    int index;
-    int size;
-    double score;
-    String name;
-    List<Question> questionsList;
+    private int index;
+    private int size;
+    private double score;
+    private double first;
+    private double second;
+    private double third;
+    private String name;
+    private List<Question> questionsList;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -36,11 +39,17 @@ public class QuestionActivity extends AppCompatActivity{
         size = extras.getInt("size");
         score = extras.getDouble("score");
         name = extras.getString("name");
+        first = extras.getDouble("first");
+        second = extras.getDouble("second");
+        third = extras.getDouble("third");
         if (index == size){ //Go to results
             Intent intent = new Intent(this,ResultActivity.class);
             intent.putExtra("score",score);
             intent.putExtra("name",name);
             intent.putExtra("size",size);
+            intent.putExtra("first",first);
+            intent.putExtra("second",second);
+            intent.putExtra("third",third);
             startActivity(intent);
             System.exit(5);
         }
@@ -94,6 +103,9 @@ public class QuestionActivity extends AppCompatActivity{
         intent.putExtra("size",size);
         intent.putExtra("score",score);
         intent.putExtra("name",name);
+        intent.putExtra("first",first);
+        intent.putExtra("second",second);
+        intent.putExtra("third",third);
         for (int i = 0;i<questionsList.size();i++){
             intent.putExtra("question"+i,questionsList.get(i));
         }
