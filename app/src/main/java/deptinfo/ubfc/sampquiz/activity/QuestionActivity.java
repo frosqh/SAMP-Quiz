@@ -115,5 +115,11 @@ public class QuestionActivity extends AppCompatActivity{
                 .setNegativeButton(android.R.string.no, null).show();
     }
 
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, StartActivity.class);
+        startActivity(intent);
+    }
+
 
 }

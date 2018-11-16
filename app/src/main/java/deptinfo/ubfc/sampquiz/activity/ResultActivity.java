@@ -1,5 +1,6 @@
 package deptinfo.ubfc.sampquiz.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -25,5 +26,11 @@ public class ResultActivity extends AppCompatActivity {
         TextView scoreView = findViewById(R.id.score);
         scoreView.setText(((String) scoreView.getText()).replace("%s",String.valueOf(score)).replace("%t",String.valueOf(Double.valueOf(size))));
         
+    }
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(this, StartActivity.class);
+        startActivity(intent);
     }
 }

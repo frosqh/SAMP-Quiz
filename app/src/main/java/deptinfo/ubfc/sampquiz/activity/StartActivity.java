@@ -68,7 +68,6 @@ public class StartActivity extends AppCompatActivity {
                                 Toast.makeText(StartActivity.this,"Quizzes downloaded ! ",Toast.LENGTH_SHORT).show();
                             }})
                         .setNegativeButton(android.R.string.no, null).show();
-                //TODO Download from specified server
             }
         });
 
